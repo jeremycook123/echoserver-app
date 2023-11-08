@@ -53,3 +53,20 @@ spec:
   - protocol: TCP
     port: 8080
     targetPort: 8080
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: echo-ingress
+  namespace: ${ parameters.namespace }
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+spec:
+  rules:
+  - host: ${ parameters.ingress-host }
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: echo-service
+          servicePort: 8080
