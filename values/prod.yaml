@@ -1,0 +1,10 @@
+replicaCount: 1
+
+image:
+  repository: cloudacademydevops/echoserver
+  tag: latest
+  pullPolicy: Always
+
+service:
+  type: ClusterIP
+  port: 8080
