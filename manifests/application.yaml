@@ -54,19 +54,23 @@ spec:
     port: 8080
     targetPort: 8080
 ---
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: echo-ingress
   namespace: ${ parameters.namespace }
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
+  ingressClassName: nginx
   rules:
-  - host: ${ parameters.ingress-host }
-    http:
-      paths:
-      - path: /
-        backend:
-          serviceName: echo-service
-          servicePort: 8080
+    - host: ${ parameters.ingress-host }
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: echo-service
+                port:
+                  number: 8080
