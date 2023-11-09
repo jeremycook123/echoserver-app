@@ -5,7 +5,7 @@
 replicaCount: 2
 
 image:
-  repository: cloudacademydevops/echoserver
+  repository: cloudacademydevops/webappecho:v4
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
@@ -13,6 +13,16 @@ image:
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
+
+env:
+  - name: HOSTPORT
+    value: 0.0.0.0:8080
+  - name: MESSAGE
+    value: "CloudAcademy ❤ DevOps"
+  - name: BACKGROUND_COLOR
+    value: yellow
+  - name: AUTO_RELOAD
+    value: 30
 
 serviceAccount:
   # Specifies whether a service account should be created
