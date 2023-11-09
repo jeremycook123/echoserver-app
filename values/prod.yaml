@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: cloudacademydevops/echoserver
+  repository: cloudacademydevops/webappecho
   tag: latest
   pullPolicy: Always
 
