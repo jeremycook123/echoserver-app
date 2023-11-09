@@ -11,7 +11,7 @@ env:
   MESSAGE:
     value: "CloudAcademy ❤ DevOps - Dev"
   BACKGROUND_COLOR:
-    value: "cyan"
+    value: "DodgerBlue"
 
 service:
   type: ClusterIP
