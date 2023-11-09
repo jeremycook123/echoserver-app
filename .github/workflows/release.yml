@@ -16,10 +16,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Set env
+        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+
       - name: Helm Chart Package
         uses: WyriHaximus/github-action-helm3@v3
         with:
-          exec: helm package ./web-echo-app/
+          exec: helm package --version ${{ env.RELEASE_VERSION }} --app-version ${{ env.RELEASE_VERSION }} ./web-echo-app/
 
       - name: Run a one-line script
         run: ls -la
@@ -27,14 +30,14 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: web-echo-app-0.1.0
-          path: web-echo-app-0.1.0.tgz
+          name: web-echo-app-${{ env.RELEASE_VERSION }}
+          path: web-echo-app-${{ env.RELEASE_VERSION }}.tgz
 
       - name: Make Release
         uses: softprops/action-gh-release@v0.1.5
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            web-echo-app-0.1.0.tgz
+            web-echo-app-${{ env.RELEASE_VERSION }}.tgz
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
