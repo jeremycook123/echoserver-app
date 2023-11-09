@@ -38,10 +38,14 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command: ["/go/bin/webapp"]
           env:
-            {{- range $name, $value := .Values.env }}
-            - name: {{ $name }}
-              value: {{ $value }}
-            {{- end }}
+            - name: HOSTPORT
+              value: 0.0.0.0:8080
+            - name: MESSAGE
+              value: "CloudAcademy ❤ DevOps"
+            - name: BACKGROUND_COLOR
+              value: yellow
+            - name: AUTO_RELOAD
+              value: 30
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}

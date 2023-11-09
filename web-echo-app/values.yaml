@@ -16,13 +16,13 @@ fullnameOverride: ""
 
 env:
   - name: HOSTPORT
-    value: "0.0.0.0:8080"
+    value: 0.0.0.0:8080
   - name: MESSAGE
     value: "CloudAcademy ❤ DevOps"
   - name: BACKGROUND_COLOR
-    value: "yellow"
+    value: yellow
   - name: AUTO_RELOAD
-    value: "30"
+    value: 30
 
 serviceAccount:
   # Specifies whether a service account should be created
