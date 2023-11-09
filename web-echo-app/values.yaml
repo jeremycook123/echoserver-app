@@ -10,6 +10,14 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   tag: "v4"
 
+env:
+  HOSTPORT:
+    value: "0.0.0.0:8080"
+  MESSAGE:
+    value: "CloudAcademy ❤ DevOps"
+  BACKGROUND_COLOR:
+    value: "yello"
+
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""

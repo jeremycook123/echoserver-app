@@ -37,15 +37,11 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          env:
-            - name: HOSTPORT
-              value: "0.0.0.0:8080"
-            - name: MESSAGE
-              value: "CloudAcademy ❤ DevOps"
-            - name: BACKGROUND_COLOR
-              value: "yellow"
-            - name: AUTO_RELOAD
-              value: "30"
+          env: 
+            {{- range $name, $item := .Values.env }}
+            - name: {{ $name }}
+              {{- $item | toYaml | nindent 14 }}
+            {{- end }}
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
