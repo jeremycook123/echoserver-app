@@ -39,13 +39,13 @@ spec:
           command: ["/go/bin/webapp"]
           env:
             - name: HOSTPORT
-              value: 0.0.0.0:8080
+              value: "0.0.0.0:8080"
             - name: MESSAGE
               value: "CloudAcademy ❤ DevOps"
             - name: BACKGROUND_COLOR
-              value: yellow
+              value: "yellow"
             - name: AUTO_RELOAD
-              value: 30
+              value: "30"
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
